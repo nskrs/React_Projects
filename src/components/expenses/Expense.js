@@ -4,7 +4,7 @@ import Card from '../Card';
 import './ExpenseDetails.css'
 function ExpenseItem(props) {
     return (
-    <div Card='expense-item'>
+    <di Card='expense-item'>
         <div>{props.date.toISOString()}</div>
     
         <div className='expense-item__description'>
