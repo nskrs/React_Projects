@@ -1,5 +1,5 @@
 import ExpenseItem from './components/expenses/ExpenseDetails';
-
+import ExpensesFilter from './ExpensesFilter';
 function newexpenseapp() {
   const expenses = [
     {

@@ -1,16 +1,37 @@
+
 import React, { useState } from 'react';
 
 import ExpenseDate from './ExpenseDate';
 import Card from '../UI/Card';
+import ExpensesFilter from './ExpensesFilter';
 import './ExpenseDetails.css';
 
 
  
 
 const ExpenseDetails = (props) =>{
-  const [title, setTitle]=useState(props.title);
-  const[amount,setAmount]=useState(props.amount);
+  
+  let [amount, setAmount] = useState(props.amount)
 
+  let amountHandler = () => {
+    setAmount("100$")
+    console.log(amount)
+  }
+
+  let  [title, setTitle] = useState(props.title)
+
+  let  clickHandler = () => {
+    setTitle('updated!')
+    console.log(title);
+  }
+
+  const Expenses = (props) => {
+    const [filteredYear, setFilteredYear] = useState('2020');
+  
+    const filterChangeHandler = selectedYear => {
+      setFilteredYear(selectedYear);
+    };
+  
   
   const clickHandler=()=>{
     setTitle('Updated!');
@@ -28,6 +49,7 @@ const deleteExpense=()=>{
      }
   return(
   <Card className='expenses'>
+    <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
     < ExpenseDate date ={props.date}/>
       <div className='expense-item__description'>
       <h2>{title}</h2>
@@ -38,6 +60,7 @@ const deleteExpense=()=>{
       <button onClick={deleteExpense} > Delete Expense</button>   
   </Card>
   );
+}
 }
 
 export default ExpenseDetails;
