@@ -42,3 +42,16 @@ const newexpense=[];
   );
 }
 export default newexpenseapp;
+
+// import Counter from "./components/Basic React/Counter";
+// import Fruits from "./components/Basic React/Fruits";
+// function App() {
+  
+//   return (
+//     <div>
+//       {/* <Counter/> */}
+//    <Fruits/>
+//     </div>
+//   );
+// }
+// export default App;
