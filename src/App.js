@@ -1,3 +1,7 @@
+import React from 'react';
+
+
+import NewExpense from './components/NewExpense/NewExpense';
 import ExpenseItem from './components/expenses/ExpenseDetails';
 
 function newexpenseapp() {
@@ -29,14 +33,22 @@ function newexpenseapp() {
       LocationOfExpenditure: 'DEF',
     },
   ];
+
+
 const newexpense=[];
   for(let i=0;i<expenses.length;i++)
   {
     newexpense.push(<ExpenseItem title={expenses[i].title} amount={expenses[i].amount} date={expenses[i].date} location={expenses[i].LocationOfExpenditure}></ExpenseItem>)
   }
+  
+  const addExpenseHandler=expense=>{
+    console.log('In App.js');
+    console.log(expense);
+  }
   return (
     <div>
-      <h2>Let's get started</h2>
+         {/* <NewExpense/> */}
+         <NewExpense onAddExpense={addExpenseHandler} />
       {newexpense}
     </div>
   );
