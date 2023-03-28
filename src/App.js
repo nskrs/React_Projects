@@ -21,7 +21,7 @@ const DUMMY_EXPENSES = [
       id: 'e3',
       title: 'movie',
       amount: 200,
-      date: new Date(2023, 3, 28),
+      date: new Date(2024, 3, 28),
       LocationOfExpenditure: 'XYZ',
     },
     {
