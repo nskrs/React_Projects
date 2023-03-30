@@ -1,60 +1,26 @@
-import React, { useState } from 'react';
 
-import NewExpense from './components/NewExpense/NewExpense';
-import Expenses from './components/Expenses/Expenses';
+import React, { useState } from "react";
+import AddUser from './Projects/MyfirstProject/Users/AddUser';
+import UsersList from './Projects/MyfirstProject/Users/UsersList';
 
-const DUMMY_EXPENSES = [
-  {
-    
-      id: 'e1',
-      title: 'food',
-      amount: 10,
-      date: new Date(2023, 3, 22),
-      LocationOfExpenditure: 'ABC',
-    },
-    { id: 'e2', title: 'petrol', 
-    amount: 100, 
-    date: new Date(2023, 3, 22),
-    LocationOfExpenditure:'HNJ',
-  },
-    {
-      id: 'e3',
-      title: 'movie',
-      amount: 200,
-      date: new Date(2024, 3, 28),
-      LocationOfExpenditure: 'XYZ',
-    },
-    {
-      id: 'e4',
-      title: 'Other',
-      amount: 450,
-      date: new Date(2023, 3, 24),
-      LocationOfExpenditure: 'DEF',
-    },
-];
+function App() {
+  const [userList, setUserList] = useState([]);
 
-const App = () => {
-  const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
-
-  const addExpenseHandler = (expense) => {
-    setExpenses((prevExpenses) => {
-      return [expense, ...prevExpenses];
+  const addUserHandler = (uName, uAge) => {
+    setUserList((prevUserList) => {
+      return [
+        ...prevUserList,
+        { name: uName, age: uAge, id: Math.random().toString() },
+      ];
     });
   };
 
-  // return React.createElement(
-  //   'div',
-  //   {},
-  //   React.createElement('h2', {}, "Let's get started!"),
-  //   React.createElement(Expenses, { items: expenses })
-  // );
-
   return (
     <div>
-      <NewExpense onAddExpense={addExpenseHandler} />
-      <Expenses items={expenses} />
+      <AddUser onAddUser={addUserHandler} />
+      <UsersList users={userList} />
     </div>
   );
-};
+}
 
 export default App;
