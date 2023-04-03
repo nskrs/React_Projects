@@ -7,4 +7,5 @@ const Button =props =>{
         <button className={classses.button} type={props.type || 'button'} onClick={props.onClick}> {props.children}</button>  )
 }
 
-export default Button
+export default Button;
+

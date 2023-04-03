@@ -1,25 +1,23 @@
+import React,{useContext} from 'react';
 
-import React, { useState } from "react";
-import AddUser from './Projects/MyfirstProject/Users/AddUser';
-import UsersList from './Projects/MyfirstProject/Users/UsersList';
+import Login from './login-apge/components/Login/Login';
+import Home from './login-apge/components/Home/Home';
+import MainHeader from './login-apge/components/MainHeader/MainHeader';
+import AuthContext from './login-apge/components/store/auth-context';
 
 function App() {
-  const [userList, setUserList] = useState([]);
 
-  const addUserHandler = (uName, uAge) => {
-    setUserList((prevUserList) => {
-      return [
-        ...prevUserList,
-        { name: uName, age: uAge, id: Math.random().toString() },
-      ];
-    });
-  };
-
+  const ctx = useContext(AuthContext)
+ 
   return (
-    <>
-      <AddUser onAddUser={addUserHandler} />
-      <UsersList users={userList} />
-    </>
+    <React.Fragment>
+     
+      <MainHeader />
+      <main>
+        {!ctx.isLoggedIn && <Login/>}
+        {ctx.isLoggedIn && <Home />}
+      </main>
+    </React.Fragment>
   );
 }
 
