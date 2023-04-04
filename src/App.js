@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Login from './login-apge/components/Login/Login';
 import Home from './login-apge/components/Home/Home';
 import MainHeader from './login-apge/components/MainHeader/MainHeader';
-// import AuthContext from './login-apge/components/store/auth-context';
+import AuthContext from './login-apge/components/store/auth-context';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -28,13 +28,17 @@ function App() {
   };
 
   return (
-    <React.Fragment>
-      <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} />
+    <AuthContext.Provider
+      value={{
+        isLoggedIn: isLoggedIn,
+      }}
+    >
+      <MainHeader onLogout={logoutHandler} />
       <main>
         {!isLoggedIn && <Login onLogin={loginHandler} />}
         {isLoggedIn && <Home onLogout={logoutHandler} />}
       </main>
-    </React.Fragment>
+    </AuthContext.Provider>
   );
 }
 
