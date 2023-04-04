@@ -4,12 +4,14 @@ import Button from '../UI/Button/Button';
 import Card from '../UI/Button/Card/Card';
 import classes from './Home.module.css';
 
+
 const Home = (props) => {
-  const authCtx = useContext(AuthContext)
+  const authCtx = useContext(AuthContext);
+
   return (
     <Card className={classes.home}>
       <h1>Welcome back!</h1>
-      <Button onClick={AuthContext.onLogout} >Logout</Button>
+      <Button onClick={authCtx.onLogout}>Logout</Button>
     </Card>
   );
 };
