@@ -1,11 +1,11 @@
-import React from 'react'
-import Home from './components/3Hours Project/Home'
+import React, { Fragment } from 'react'
+import Header from './components/Restaurant/Layout/Header';
 
-const App = () => {
+function App () {
   return (
-    <div>
-      <Home/>
-    </div>
+    <Fragment>
+      <Header/>
+    </Fragment>
   )
 }
 
