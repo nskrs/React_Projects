@@ -1,0 +1,35 @@
+body{
+  text-align: center;
+  display: inline;
+  flex-wrap:wrap-reverse;
+  background-color: rgb(98, 255, 0);
+  
+}
+
+li button {
+  color: yellow;
+  background-color: rgb(13, 0, 255);
+  width: 8rem;
+  height: 2rem;
+  flex-basis: 50%;
+  margin-top: 1rem;
+  border-radius: 50px;
+}
+
+form label {
+  margin-left: 5rem;
+  margin-right: 1rem;
+}
+
+form select{
+  background-color: rgb(241, 90, 171);
+  color: yellow;
+  font-weight:bolder;
+}
+
+form button{
+  background-color: #ed6b6b;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}

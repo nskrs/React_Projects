@@ -1,21 +1,12 @@
-import React, { useState, useEffect,useContext } from 'react';
-import Login from './login-apge/components/Login/Login';
-import Home from './login-apge/components/Home/Home';
-import MainHeader from './login-apge/components/MainHeader/MainHeader';
-import AuthContext from './login-apge/components/store/auth-context';
+import React from 'react'
+import Home from './components/3Hours Project/Home'
 
-function App() {
-  const ctx = useContext(AuthContext);
-
+const App = () => {
   return (
-    <React.Fragment>
-      <MainHeader />
-      <main>
-        {!ctx.isLoggedIn && <Login />}
-        {ctx.isLoggedIn && <Home />}
-      </main>
-    </React.Fragment>
-  );
+    <div>
+      <Home/>
+    </div>
+  )
 }
 
 export default App;
