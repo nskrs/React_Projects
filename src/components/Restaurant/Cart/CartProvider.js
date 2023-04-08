@@ -6,14 +6,14 @@ const CartProvider = props => {
 
     const removeItemFromCartHandler =(id) =>{};
 
-    const CartContext ={
+    const cartContext ={
         items:[],
-        totolAmount:0,
+        totalAmount:0,
         addItem:addItemToCartHandler ,
-        reemoveItem:removeItemFromCartHandler
+        removeItem:removeItemFromCartHandler
     }
     return (
-    <CartContext.Provider value = {CartContext}>
+    <CartContext.Provider value = {cartContext}>
         {props.children}
     </CartContext.Provider>
     );
