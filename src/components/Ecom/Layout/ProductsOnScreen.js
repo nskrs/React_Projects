@@ -3,6 +3,8 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
+import { useContext } from "react";
+import { CartContext } from "../Cart/CartContext";
 
 const productsArr = [
   {
@@ -28,6 +30,8 @@ const productsArr = [
 ];
 
 const ProductsOnScreen = () => {
+  const { addToCart } = useContext(CartContext);
+
   return (
     <Row xs={1} md={2} className="g-4 mt-3 ms-5">
       {productsArr.map((product, idx) => (
@@ -37,7 +41,7 @@ const ProductsOnScreen = () => {
             <Card.Img variant="top" src={product.imageUrl} />
             <Card.Body>
               <Card.Text as="h4">${product.price}</Card.Text>
-              <Button>Add to Cart</Button>
+              <Button onClick={() => addToCart(product)}>Add to Cart</Button>
             </Card.Body>
           </Card>
         </Col>
