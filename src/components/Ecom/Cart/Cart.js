@@ -22,8 +22,13 @@ const Cart = (props) => {
   return (
     <CartProvider>
       <h3 as="h1" className="text-center mt-3">
-        Cart
-      </h3>
+        Cart</h3>
+        <Button variant="primary" className="text-center mt-3">
+          Total-Items{" "}
+          <span className="badge bg-secondary">{totalQuantity}</span>
+        </Button>
+      
+
       <Container>
         <Row xs={1} md={2} className="g-4 mt-3">
           {cartCtx.cartItems.map((item, index) => (
@@ -46,11 +51,6 @@ const Cart = (props) => {
           ))}
         </Row>
       </Container>
-      <div className="text-end mt-3">
-        <Button variant="primary">
-          Cart <span className="badge bg-secondary">{totalQuantity}</span>
-        </Button>
-      </div>
     </CartProvider>
   );
 };

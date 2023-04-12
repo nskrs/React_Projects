@@ -1,33 +1,15 @@
-import React, { useState } from "react";
-import NavBar from "./components/Ecom/MainHeader/NavBar"
-import Header from "./components/Ecom/MainHeader/Header";
-import ProductsOnScreen from "./components/Ecom/Layout/ProductsOnScreen";
-import Cart from "./components/Ecom/Cart/Cart";
-import { CartProvider } from './components/Ecom/Cart/CartProvider';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import AboutPage from "./components/Ecom/Routers/AboutPage";
+import Store  from "./components/Ecom/store/Store";
+
+const router = createBrowserRouter([
+  { path: "/", element: <Store /> },
+  { path: "/about", element: <AboutPage /> },
+]);
 
 const App = () => {
-  const [cartOpen, setCartOpen] = useState(false);
-  const [navOpen, setNavOpen] = useState(true);
-  const [headerOpen, setHeaderOpen] = useState(true);
-  const [productsOpen, setProductsOpen] = useState(true);
-
-  const toggleCart = () => {
-    setCartOpen(!cartOpen);
-    setNavOpen(!navOpen);
-    setHeaderOpen(!headerOpen);
-    setProductsOpen(!productsOpen);
-  };
-
-  return (
-    <CartProvider>
-      <div className="App">
-        {navOpen && <NavBar toggleCart={toggleCart} />}
-        {headerOpen && <Header />}
-        {productsOpen && <ProductsOnScreen />}
-        {cartOpen && <Cart />}
-      </div>
-    </CartProvider>
-  );
+  return <RouterProvider router={router}></RouterProvider>;
 };
 
 export default App;
