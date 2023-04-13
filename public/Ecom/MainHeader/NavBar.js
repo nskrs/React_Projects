@@ -14,7 +14,7 @@ const NavBar = ({ toggleCart }) => {
       <Navbar bg="dark" variant="dark">
         <Container>
           <Nav className="me-auto">
-            <Nav.Link href="#home">HOME</Nav.Link>
+            <Nav.Link href="/home" className="nav-link">HOME</Nav.Link>
             <NavLink to="/" className="nav-link">STORE</NavLink>
             <NavLink to="/about" className="nav-link">ABOUT</NavLink>
           </Nav>

@@ -1,7 +1,8 @@
-import React, { useState,useContext } from "react";
+import React, { useContext } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import {  CartContext } from "./CartContext";
 import { CartProvider } from "./CartProvider";
+import NavBar from "../MainHeader/NavBar";
 
 const Cart = (props) => {
   const cartCtx = useContext(CartContext);
