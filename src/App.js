@@ -1,18 +1,44 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import React, { useState } from "react";
 
-import AboutPage from "./Components/Routers/AboutPage";
-import Store from "./Store";
+import MoviesList from "./components/MoviesList";
+import "./App.css";
 
-import Home from "./Home";
+function App() {
+  const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-const router = createBrowserRouter([
-  { path: "/", element: <Store /> },
-  { path: "/about", element: <AboutPage /> },
-  { path: "/home", element: <Home /> },
-]);
+  const fetchMoviesHandler = async () => {
+    try {
+      setIsLoading(true);
+      const response = await fetch("https://swapi.dev/api/films/");
+      const data = await response.json();
+      const transformedMovies = data.results.map((movieData) => {
+        return {
+          id: movieData.episode_id,
+          title: movieData.title,
+          openingText: movieData.opening_crawl,
+          releaseDate: movieData.release_date,
+        };
+      });
+      setMovies(transformedMovies);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-const App = () => {
-  return <RouterProvider router={router}></RouterProvider>;
-};
+  return (
+    <React.Fragment>
+      <section>
+        <button onClick={fetchMoviesHandler}>Fetch Movies</button>
+      </section>
+      <section>
+        {!isLoading && movies.length > 0 && <MoviesList movies={movies} />}
+        {!isLoading && movies.length === 0 && <p>Found no movies.</p>}
+        {isLoading && <p>Loading...</p>}
+      </section>
+    </React.Fragment>
+  );
+}
 
 export default App;
