@@ -15,7 +15,7 @@ function App() {
     if (!authCtx.isLoggedIn) {
       navigate("/auth");
     }
-  }, [authCtx.isLoggedIn, navigate]);
+  }, [authCtx.isLoggedIn]);
 
   return (
     <Layout>

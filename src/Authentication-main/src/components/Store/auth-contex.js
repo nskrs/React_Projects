@@ -1,5 +1,6 @@
-import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import React from "react";
 
 const AuthContext = React.createContext({
   token: "",
@@ -10,17 +11,30 @@ const AuthContext = React.createContext({
 
 export const AuthContextProvider = (props) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const [logoutTimeout, setLogoutTimeout] = useState(null);
+  const navigate = useNavigate();
 
   const userIsLoggedIn = !!token;
 
   const loginHandler = (token) => {
     localStorage.setItem("token", token);
     setToken(token);
+
+    const timeoutId = setTimeout(() => {
+      logoutHandler();
+      navigate("/auth");
+    }, 5 * 60 * 1000);
+    setLogoutTimeout(timeoutId);
   };
 
   const logoutHandler = () => {
     localStorage.removeItem("token");
     setToken(null);
+
+    if (logoutTimeout) {
+      clearTimeout(logoutTimeout);
+      setLogoutTimeout(null);
+    }
   };
 
   const contextValue = {
