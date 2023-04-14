@@ -19,6 +19,8 @@ const AddMovie = (props) => {
 
         props.onAddMovie(movie)
 
+        event.target.reset()
+
     }
 
 

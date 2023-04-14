@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import MoviesList from './Movie/MoviesList';
-import './App.css';
 import AddMovie from './Movie/AddMovies';
+import './App.css';
 
 function App() {
 
