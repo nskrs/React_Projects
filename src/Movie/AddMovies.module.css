@@ -1,0 +1,34 @@
+.moviess {
+    padding: 100px;
+    background-color: #272727;
+    color: blue;
+    display: grid;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.moviess .movie{
+    padding: 50px;
+    border-radius: 10px;
+    display: grid;
+}
+
+.movie{
+    background-color: white;
+}
+
+.movie label{
+    padding: 5px;
+    color: blue;
+}
+
+.movie input{
+    padding: 5px;
+    color: blue;
+    border-radius: 50px;
+}
+
+.moviess button{
+    align-items: center;
+}

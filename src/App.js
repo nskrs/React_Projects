@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import MoviesList from './Movie/MoviesList';
 import './App.css';
+import AddMovie from './Movie/AddMovies';
 
 function App() {
 
@@ -46,9 +47,14 @@ function App() {
     setisLoading(false)
   }
 
+  function addMovieHandler(movie){
+    console.log(movie)
+  }
+
 
 return (
   <React.Fragment>
+    <AddMovie onAddMovie={addMovieHandler} />
     <section>
       <button onClick={fetchMovieHandler} >Fetch Movies</button>
     </section>
