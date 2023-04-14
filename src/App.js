@@ -1,44 +1,64 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import MoviesList from "./components/MoviesList";
-import "./App.css";
+import MoviesList from './Movie/MoviesList';
+import './App.css';
 
 function App() {
-  const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
 
-  const fetchMoviesHandler = async () => {
-    try {
-      setIsLoading(true);
-      const response = await fetch("https://swapi.dev/api/films/");
-      const data = await response.json();
-      const transformedMovies = data.results.map((movieData) => {
+  const [movies,setMovies] = useState([])
+  const [isloading,setisLoading] = useState(false)
+  const [error,setError] = useState(null)
+
+  useEffect(()=> {
+    fetchMovieHandler();
+  },[])
+
+
+  async function fetchMovieHandler (){
+    setisLoading(true)
+    setError(null)
+
+    try{
+
+      const response = await fetch('https://swapi.dev/api/films')
+
+      if(!response.ok){
+        throw new Error('Something went wrong!');
+      }
+
+      const data = await response.json()
+
+  
+      const transformedMovies = data.results.map(movieData => {
         return {
-          id: movieData.episode_id,
-          title: movieData.title,
-          openingText: movieData.opening_crawl,
-          releaseDate: movieData.release_date,
-        };
-      });
-      setMovies(transformedMovies);
-      setIsLoading(false);
-    } catch (error) {
-      console.log(error);
+          id:movieData.episode_id,
+          title:movieData.title,
+          openingText:movieData.opening_crawl,
+          releaseDate:movieData.release_date
+        }
+      })
+      setMovies(transformedMovies)
     }
-  };
+    catch(error){
+      setError(error.message)
+    }
 
-  return (
-    <React.Fragment>
-      <section>
-        <button onClick={fetchMoviesHandler}>Fetch Movies</button>
-      </section>
-      <section>
-        {!isLoading && movies.length > 0 && <MoviesList movies={movies} />}
-        {!isLoading && movies.length === 0 && <p>Found no movies.</p>}
-        {isLoading && <p>Loading...</p>}
-      </section>
-    </React.Fragment>
-  );
+    setisLoading(false)
+  }
+
+
+return (
+  <React.Fragment>
+    <section>
+      <button onClick={fetchMovieHandler} >Fetch Movies</button>
+    </section>
+    <section>
+    {!isloading && movies.length >0 && <MoviesList movies={movies} />}
+        {!isloading && movies.length === 0 && !error && <p>No movies to show.</p>}
+        {isloading && <p>Loading....</p>}
+        {!isloading && error && <p>{error}</p>}
+    </section>
+  </React.Fragment>
+);
 }
-
 export default App;
