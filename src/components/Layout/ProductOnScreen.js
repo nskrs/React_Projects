@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import { useContext } from "react";
 import { CartContext } from "../Cart/CartContext";
 import { Link } from "react-router-dom";
-import productsArr from "./ProductsData";
+import productsArr from "../Body/ProductsData";
 
 const ProductsOnScreen = () => {
   const { addToCart } = useContext(CartContext);

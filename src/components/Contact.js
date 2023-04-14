@@ -4,6 +4,7 @@ import FloatingLabel from "react-bootstrap/FloatingLabel"; // Import FloatingLab
 
 import { useState } from "react";
 import Card from "react-bootstrap/Card";
+import NavBar from "./MainNavigation/NavBar";
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -35,54 +36,60 @@ const Contact = () => {
   };
 
   return (
-    <Card style={{ width: "50rem" }} className="shadow-lg mx-auto mt-3">
-      <Card.Title className="mx-auto mt-3 text-center">CONTACT US</Card.Title>
-      <Form className=" mx-auto mt-3" onSubmit={handleFormSubmit}>
-        <FloatingLabel controlId="name" label="Name:">
-          <Form.Control
-            type="text"
-            placeholder="Enter name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </FloatingLabel>
+    <>
+      <NavBar />
+      <Card style={{ width: "50rem" }} className="shadow-lg mx-auto mt-3">
+        <Card.Title className="mx-auto mt-3 text-center">CONTACT US</Card.Title>
+        <Form className=" mx-auto mt-3" onSubmit={handleFormSubmit}>
+          <FloatingLabel controlId="name" label="Name:">
+            <Form.Control
+              type="text"
+              placeholder="Enter name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </FloatingLabel>
 
-        <FloatingLabel
-          className=" mx-auto mt-3"
-          controlId="email"
-          label="Email:"
-        >
-          <Form.Control
-            type="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </FloatingLabel>
+          <FloatingLabel
+            className=" mx-auto mt-3"
+            controlId="email"
+            label="Email:"
+          >
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </FloatingLabel>
 
-        <FloatingLabel
-          className=" mx-auto mt-3"
-          controlId="phone"
-          label="Phone:"
-        >
-          <Form.Control
-            type="tel"
-            placeholder="Enter phone number"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            required
-          />
-        </FloatingLabel>
+          <FloatingLabel
+            className=" mx-auto mt-3"
+            controlId="phone"
+            label="Phone:"
+          >
+            <Form.Control
+              type="tel"
+              placeholder="Enter phone number"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              required
+            />
+          </FloatingLabel>
 
-        <Button className=" mx-auto mt-3 mb-3" variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
-    </Card>
+          <Button
+            className=" mx-auto mt-3 mb-3"
+            variant="primary"
+            type="submit"
+          >
+            Submit
+          </Button>
+        </Form>
+      </Card>
+    </>
   );
 };
 
-export default Contact; 
-
+export default Contact;

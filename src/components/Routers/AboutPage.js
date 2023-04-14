@@ -1,5 +1,5 @@
 import Header from "../MainHeader/Header";
-import NavBar from "../MainHeader/NavBar";
+import NavBar from "../MainNavigation/NavBar";
 import Card from "react-bootstrap/Card";
 
 const AboutPage = () => {
