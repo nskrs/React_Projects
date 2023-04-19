@@ -1,37 +1,32 @@
-import { Routes, Route,useNavigate , Navigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
-import AboutPage from "./Components/Routers/AboutPage";
-import Store from "./Components/Routers/Store";
-import AuthContext from "./Components/Authentication/auth-context";
-import Home from "./Components/Routers/Home";
-import Contact from "./Components/Contact";
-import ProductPage from "./Components/ProductPages/ProductPage";
-import Layout from "./Components/MainNavigation/Layout";
-import AuthForm from "./Components/Authentication/auth-form";
+import React, { useState } from "react";
+import CartProvider from "./Shoe of Ecommerce/Components/store/CartProvider";
+import "./App.css";
+import ShoeForm from "./Shoe of Ecommerce/Shoes/ShoesForm";
+import Header from "./Shoe of Ecommerce/Components/Header/Header";
+import Shoes from "./Shoe of Ecommerce/Shoes/Shoes";
+import Cart from "./Shoe of Ecommerce/Components/Cart/Cart";
 
-const App = () => {
-  const authCtx = useContext(AuthContext);
-  const navigate = useNavigate();
+function App() {
+  const [showCart, setShowCart] = useState(false);
 
-  useEffect(() => {
-    if (!authCtx.isLoggedIn) {
-      navigate("/auth");
-    }
-  }, [authCtx.isLoggedIn]);
+  const cartOpenHandler = (event) => {
+    event.preventDefault();
+    setShowCart(true);
+  };
+
+  const closeHandler = (event) => {
+    event.preventDefault();
+    setShowCart(false);
+  };
 
   return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<AuthForm />} />
-        <Route path="/store" element={authCtx.isLoggedIn ? <Store/> : <Navigate to="/" />} />
-        <Route path="/about" element={authCtx.isLoggedIn ? <AboutPage/> : <Navigate to="/" />} />
-        <Route path="/home" element={authCtx.isLoggedIn ? <Home/> : <Navigate to="/" />} />
-        <Route path="/contact" element={authCtx.isLoggedIn ? <Contact/> : <Navigate to="/" />} />
-        <Route path="/product/:id" element={authCtx.isLoggedIn ? <ProductPage/> : <Navigate to="/" />} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </Layout>
+    <CartProvider>
+      <Header onClick={cartOpenHandler} />
+      <ShoeForm />
+      {showCart && <Cart onClose={closeHandler} />}
+      <Shoes />
+    </CartProvider>
   );
-};
+}
 
 export default App;
